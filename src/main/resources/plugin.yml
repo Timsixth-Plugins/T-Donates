@@ -1,0 +1,8 @@
+name: T-Donates
+main: pl.timsixth.donates.DonatesPlugin
+version: 1.2
+author: timsixth (Idea by RokeR)
+depend:
+  - Vault
+commands:
+  donate:

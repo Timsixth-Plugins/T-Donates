@@ -1,0 +1,16 @@
+permission: 'timsixth.donates'
+max_top_players: 10
+messages:
+  dont_have_permission: '&cYou don''t have permission'
+  player_is_offline: '&cThis player is offline'
+  is_not_number: '&cThis is not a number'
+  dont_have_money: '&cYou don''t have money'
+  receive_donate: '&aYou have received donated from {SENDER_NAME} &awith money {COINS}'
+  send_donate: '&aYou have sent donate to {RECEIVER_NAME}'
+  empty_list: '&cYou don''t have any donates'
+  number_must_be_greater_then_zero: '&cNumber must be greater then zero'
+  top_players: '&aTop {MAX_TOP_PLAYERS} donors'
+  list_of_command:
+    - '&7-------] &aDonates &7[--------'
+    - '&7/&adonate <nick> <coins> &7- Send donate to player'
+    - '&7/&adonate top  &7- Top 10 donors  who sent you money'
