@@ -6,7 +6,7 @@
 
     <groupId>pl.timsixth</groupId>
     <artifactId>T-Donates</artifactId>
-    <version>1.2</version>
+    <version>1.2.1</version>
 
     <repositories>
         <repository>

@@ -7,6 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import pl.timsixth.donates.command.DonateCommand;
 import pl.timsixth.donates.config.ConfigFile;
 import pl.timsixth.donates.manager.DonateManager;
+import pl.timsixth.donates.tabcomplter.DonateCommandTabCompleter;
 
 import java.util.logging.Logger;
 
@@ -30,6 +31,7 @@ public final class DonatesPlugin extends JavaPlugin {
         donateManager.load();
 
         getCommand("donate").setExecutor(new DonateCommand(configFile,this,donateManager));
+        getCommand("donate").setTabCompleter(new DonateCommandTabCompleter());
     }
 
     private boolean initEconomy() {
