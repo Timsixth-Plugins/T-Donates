@@ -1,4 +1,4 @@
-package pl.timsixth.donates.tabcomplter;
+package pl.timsixth.donates.tabcompleter;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
