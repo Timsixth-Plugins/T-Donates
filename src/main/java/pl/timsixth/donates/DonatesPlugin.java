@@ -4,9 +4,11 @@ import lombok.Getter;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import pl.timsixth.donates.command.AdminDonatesCommand;
 import pl.timsixth.donates.command.DonateCommand;
 import pl.timsixth.donates.config.ConfigFile;
 import pl.timsixth.donates.manager.DonateManager;
+import pl.timsixth.donates.tabcompleter.AdminDonatesTabCompleter;
 import pl.timsixth.donates.tabcompleter.DonateCommandTabCompleter;
 
 import java.util.logging.Logger;
@@ -31,7 +33,9 @@ public final class DonatesPlugin extends JavaPlugin {
         donateManager.load();
 
         getCommand("donate").setExecutor(new DonateCommand(configFile,this,donateManager));
+        getCommand("adonates").setExecutor(new AdminDonatesCommand(configFile));
         getCommand("donate").setTabCompleter(new DonateCommandTabCompleter());
+        getCommand("adonates").setTabCompleter(new AdminDonatesTabCompleter());
     }
 
     private boolean initEconomy() {

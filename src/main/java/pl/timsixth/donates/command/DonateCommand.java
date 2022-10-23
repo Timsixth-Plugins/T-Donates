@@ -22,7 +22,6 @@ public class DonateCommand implements CommandExecutor {
 
     private final ConfigFile configFile;
     private final DonatesPlugin donatesPlugin;
-
     private final DonateManager donateManager;
 
     @Override
@@ -32,7 +31,7 @@ public class DonateCommand implements CommandExecutor {
             return true;
         }
         if (!(sender instanceof Player)) {
-            System.out.println("Only players can use this command");
+            Bukkit.getLogger().info("Only players can use this command");
             return true;
         }
         Player player = (Player) sender;
