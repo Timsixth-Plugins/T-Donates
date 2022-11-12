@@ -36,7 +36,7 @@ public class DonateCommand implements CommandExecutor {
         }
         Player player = (Player) sender;
         if (args.length == 0) {
-            configFile.getListOfCommands().forEach(player::sendMessage);
+            configFile.getListOfCommands().forEach(message -> ChatUtil.sendMessage(player, message));
             return true;
         }
         if (args.length == 1) {
@@ -55,7 +55,7 @@ public class DonateCommand implements CommandExecutor {
                                 (e1, e2) -> e1,
                                 LinkedHashMap::new));
 
-                player.sendMessage(configFile.getTopPlayers().replace("{MAX_TOP_PLAYERS}", String.valueOf(configFile.getMaxTopPlayers())));
+                ChatUtil.sendMessage(player, configFile.getTopPlayers().replace("{MAX_TOP_PLAYERS}", String.valueOf(configFile.getMaxTopPlayers())));
                 topDonors.forEach((uuid, coins) -> player.sendMessage(ChatUtil.chatColor("&a" + Bukkit.getOfflinePlayer(uuid).getName() + " &e " + coins)));
             }
         } else if (args.length == 2) {
@@ -80,8 +80,8 @@ public class DonateCommand implements CommandExecutor {
             }
             try {
                 donateManager.donate(other, player, coins);
-                player.sendMessage(configFile.getSendDonate().replace("{RECEIVER_NAME}", other.getDisplayName()));
-                other.sendMessage(configFile.getReceiveDonate().replace("{SENDER_NAME}", player.getDisplayName())
+                ChatUtil.sendMessage(player, configFile.getSendDonate().replace("{RECEIVER_NAME}", other.getDisplayName()));
+                ChatUtil.sendMessage(other, configFile.getReceiveDonate().replace("{SENDER_NAME}", player.getDisplayName())
                         .replace("{COINS}", String.valueOf(coins)));
             } catch (IOException e) {
                 e.printStackTrace();
