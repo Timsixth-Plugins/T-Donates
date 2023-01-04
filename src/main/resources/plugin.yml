@@ -1,6 +1,6 @@
 name: T-Donates
 main: pl.timsixth.donates.DonatesPlugin
-version: 1.3
+version: 1.4
 author: timsixth (Idea by RokeR)
 softdepend:
   - PlaceholderAPI

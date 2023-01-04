@@ -11,6 +11,7 @@ import pl.timsixth.donates.expansion.DonatesExpansion;
 import pl.timsixth.donates.manager.DonateManager;
 import pl.timsixth.donates.tabcompleter.AdminDonatesTabCompleter;
 import pl.timsixth.donates.tabcompleter.DonateCommandTabCompleter;
+import pl.timsixth.donates.version.VersionChecker;
 
 import java.util.logging.Logger;
 
@@ -35,6 +36,8 @@ public final class DonatesPlugin extends JavaPlugin{
         donateManager.load();
         registerCommands(configFile);
         registerTabcompleters();
+
+        new VersionChecker(this).checkVersion();
 
         if (!initPlaceHolderApi()){
             LOGGER.warning("Please download PlaceholderAPI, if you want to use placeholders.");
