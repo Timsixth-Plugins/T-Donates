@@ -4,6 +4,7 @@ import lombok.Getter;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import pl.timsixth.donates.bstats.Metrics;
 import pl.timsixth.donates.command.AdminDonatesCommand;
 import pl.timsixth.donates.command.DonateCommand;
 import pl.timsixth.donates.config.ConfigFile;
@@ -15,7 +16,7 @@ import pl.timsixth.donates.version.VersionChecker;
 
 import java.util.logging.Logger;
 
-public final class DonatesPlugin extends JavaPlugin{
+public final class DonatesPlugin extends JavaPlugin {
 
     private static final Logger LOGGER = Logger.getLogger("Minecraft");
     @Getter
@@ -32,14 +33,16 @@ public final class DonatesPlugin extends JavaPlugin{
         getConfig().options().copyDefaults(true);
         saveConfig();
         ConfigFile configFile = new ConfigFile(this);
-        donateManager = new DonateManager(this,configFile);
+        donateManager = new DonateManager(this, configFile);
         donateManager.load();
         registerCommands(configFile);
         registerTabcompleters();
 
         new VersionChecker(this).checkVersion();
 
-        if (!initPlaceHolderApi()){
+        new Metrics(this, 19748);
+
+        if (!initPlaceHolderApi()) {
             LOGGER.warning("Please download PlaceholderAPI, if you want to use placeholders.");
         }
     }
@@ -50,12 +53,12 @@ public final class DonatesPlugin extends JavaPlugin{
     }
 
     private void registerCommands(ConfigFile configFile) {
-        getCommand("donate").setExecutor(new DonateCommand(configFile,this,donateManager));
+        getCommand("donate").setExecutor(new DonateCommand(configFile, this, donateManager));
         getCommand("adonates").setExecutor(new AdminDonatesCommand(configFile));
     }
 
-    private boolean initPlaceHolderApi(){
-        if (getServer().getPluginManager().getPlugin("PlaceholderAPI") == null){
+    private boolean initPlaceHolderApi() {
+        if (getServer().getPluginManager().getPlugin("PlaceholderAPI") == null) {
             return false;
         }
         new DonatesExpansion(donateManager).register();
@@ -72,6 +75,6 @@ public final class DonatesPlugin extends JavaPlugin{
             return false;
         }
         economy = registeredServiceProvider.getProvider();
-        return economy != null;
+        return true;
     }
 }
